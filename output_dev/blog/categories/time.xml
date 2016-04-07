@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title><![CDATA[Blog de Sismic]]></title>
+    <link href="/blog/categories/time.xml" rel="self"/>
+    <link href="/"/>
+    <updated>2016-04-07T11:05:55+02:00</updated>
+    <id>/</id>
+        <generator uri="http://sculpin.io/">Sculpin</generator>
+            <entry>
+            <title type="html"><![CDATA[Time travel]]></title>
+            <link href="/blog/2020/01/07/time-travel"/>
+            <updated>2020-01-07T00:00:00+01:00</updated>
+            <id>/blog/2020/01/07/time-travel</id>
+            <content type="html"><![CDATA[<h1 id="hello-world.">Hello world.</h1>
+
+<p>I am in the future.</p>
+
+<p><em>Markdown is cool.</em></p>
+
+<p><strong>So is twig, because it knows this page's name is: Time travel</strong></p>
+]]></content>
+        </entry>
+    </feed>
