@@ -77,6 +77,108 @@
         <div>
             <h1 id="conf%C3%A9rence-pgday-paris-2016">Conférence PgDay Paris 2016</h1>
 
+<h2 id="retour-sur-le-pgdayparis---point-de-vue-d%E2%80%99un-dev">Retour sur le pgDayParis - Point de vue d’un dev</h2>
+
+<p>Le 31 mars dernier à Paris s’est déroulé la conférence annuelle <a href="http://www.pgday.paris">pgDay Paris</a>.</p>
+
+<p>Cet évènement organisé par la communauté française et européenne de PostgreSQL, 
+était ouvert aussi bien aux administrateur qu’aux développeurs.</p>
+
+<p>Pour cette occasion deux développeurs de SISMIC y ont été envoyés: <a href="https://twitter.com/mcoutant">Mathias COUTANT</a> et <a href="https://twitter.com/ryosaeba_fr">Laurent BOLZER</a>.</p>
+
+<h2 id="historique-des-bases-de-donn%C3%A9es%2C-au-regard-des-exigences-actuelles---s%C3%A9bastien-lardiere">Historique des Bases de Données, au regard des exigences actuelles - Sébastien LARDIERE</h2>
+
+<p>Une première conférence très intéressante qui nous met dans le bain avec un petit retour en arrière pour nous expliquer
+l’évolution et les attentes des utilisateurs de base de données.</p>
+
+<p><strong>Ce que nous retiendrons :</strong> énormément de travaux sont issus d’université.</p>
+
+<h2 id="postgresql-backup-the-modern-ways---magnus-hagander">PostgreSQL Backup the modern ways - Magnus HAGANDER</h2>
+
+<p>Une conférence donnée par le président de PostgreSQL Europe, c’est quand même la classe, et en particulier sur les backups.</p>
+
+<p>Après une légère introduction sur l’importance de tester ses backups (sous peine d’avoir des surprises ...), Magnus nous montre les différents moyens
+pour générer les backups, en passant par pg_dump (trop lent pour la restauration (et surtout aucun « PITR ») et pg_basebackup (qui est le moyen conseillé par Magnus).</p>
+
+<p><strong>Ce que nous retiendrons :</strong><br />
+pg_basebackup doit être utilisé pour plusieurs raisons: c’est un moyen sûr qui utilise le protocole de réplication, 
+sauvegarde sur l’ensemble de l’instance et a une gestion des erreurs.</p>
+
+<p>Très important, toujours utiliser -x ou -X pour inclure xlog ...</p>
+
+<p><strong>Outils à regarder :</strong> Barman, pgBackRest.</p>
+
+<h2 id="survivre-%C3%A0-une-migration-de-donn%C3%A9es-de-mysql-vers-postgres---gr%C3%A9goire-hubert">Survivre à une migration de données de MySQL vers Postgres - Grégoire HUBERT</h2>
+
+<p>Migrer une base de données MySQL vers PostgreSQL n’est pas chose la chose la plus aisée au monde ni la plus amusante.</p>
+
+<p>Grégoire commence fort et de manière assez trollesque avec "On peut migrer de MySQL à PostgreSQL en 20 min", 
+et nous montre ensuite les différentes étapes d’une migration sans passer par un ETL 
+(création de vues dans un db dédiée MySQL, chargement de Postgres via PgLoader, dispatch des données en SQL Postgres, tester la structure avec PgTap)</p>
+
+<p><strong>Outils qu’il faut absolument retenir:</strong></p>
+
+<ul>
+<li>PgLoader pour charger les données sous stéroïdes (gère notamment l’encoding latin1 -> utf8, stream les données via le protocole COPY qui est très rapide ...)</li>
+<li>PgTap pour tester la structure.</li>
+</ul>
+
+<h2 id="quels-outils-de-supervision-pour-postgresql-%3F---damien-clochard">Quels outils de supervision pour PostgreSQL ? - Damien CLOCHARD</h2>
+
+<p>Cette conférence nous présentait divers outils et commandes pour visualiser et monitorer son instance PostgreSQL.</p>
+
+<p>De nombreux outils y étaient présentés :</p>
+
+<ul>
+<li><a href="https://www.nagios.org">Nagios</a></li>
+<li><a href="https://github.com/julmon/pg_activity">pg_activity</a> qui permet de visualiser en temps réel l'activité de l'instance PostgreSQL à la manière de la commande "top" pour surveiller l'activité du système</li>
+<li><a href="https://github.com/dalibo/pgbadger">pgBadger</a> analyse les logs PostgreSQL et ressort des rapports détaillés et des  graphiques </li>
+<li>[POWA] (http://dalibo.github.io/powa/) (Postgresql Workload Analyze) collecte les statistiques d'une base de données PostgreSQL, permet d'avoir un monitoring 
+de l'activié de l'instance et donne des pistes d'optimisation comme la pose d'index sur certaines tables. </li>
+</ul>
+
+<h2 id="10-things%2C-an-oracle-dba-should-care-about-when-moving-to-postgresql---ilya-kosmodemiansky">10 Things, an Oracle DBA should care about when moving to PostgreSQL - Ilya KOSMODEMIANSKY</h2>
+
+<p>Cette conférence était orientée DBA et donnait des conseils pour migrer une base de données Oracle vers PostgreSQL.</p>
+
+<p>Une conférence très intéressante, mais très axée DBA et de ce fait hors de notre domaine de compétence.</p>
+
+<h2 id="tout-sur-les-index---c%C3%A9dric-villemain">Tout sur les index - Cédric VILLEMAIN</h2>
+
+<p>Cette conférence nous a particulièrement intéressé et donnait des explications sur les différents types d'index et leur utilisation.</p>
+
+<p>Bien qu'indiquée de niveau "Intermédiaire", il fallait déjà une bonne connaissance des index pour l'aprécier à sa juste valeur.</p>
+
+<p>Cédric rappelle que les index ne sont pas une notion indispensable au langage SQL qui peut fonctionner sans les index. Par contre, ils ont été créés par la suite pour des questions 
+de performance.</p>
+
+<p>Des index sont créés automatiquements par le moteur SQL, comme pour les Primary Key. Dans le cas des Foreign Key, le moteur ne crée pas d'index automatiquement.</p>
+
+<p>Il a ensuite donné des exemples d'utilisation des index de type BTREE, GIST, GIN et BRIN.</p>
+
+<p>L'exemple qu'il a donné sur l'usage de <strong>exclude using gist</strong> était très intéressant pour gérer par exemple les conflits sur chevauchement de dates, 
+dans le cas d'une application de planning de réservation de salle par exemple.</p>
+
+<pre><code>CREATE EXTENSION btree_gist;
+CREATE TABLE DEMO (
+    id serial PRIMARY KEY, 
+    pseudo TEXT, 
+    active_range DATERANGE, 
+    EXCLUDE USING GIST (lower(pseudo) with =, active_range with &amp;&amp;
+);
+</code></pre>
+
+<h2 id="postgeol%3A-une-future-extension-postgresql-pour-les-g%C3%A9ologues%2C-dans-le-cadre-de-geolllibre---pierre-chevalier">PostGeol: une (future) extension PostgreSQL pour les géologues, dans le cadre de GeolLLibre - Pierre CHEVALIER</h2>
+
+<p>Nous n'avons malheureusement pas pu assister à cette conférence car nous avons dû partir plus tôt pour affronter une épreuve pire qu'une migration MySQL: 
+une grève dans les transports pour l'un, la pluie et les bouchons sur le périphérique parisien pour l'autre!</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Les présentations de cette conférence étaient toutes très intéressantes, certaines plus orientées développeur, d'autres DBA, il y en avait pour tous les goûts !</p>
+
+<p>Vivement l'édition 2017.</p>
+
         </div>
                     <p class="categories">
             Categories:
