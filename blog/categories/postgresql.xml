@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title><![CDATA[Blog de Sismic]]></title>
-    <link href="/atom.xml" rel="self"/>
+    <link href="/blog/categories/postgresql.xml" rel="self"/>
     <link href="/"/>
     <updated>2016-04-08T13:25:52+02:00</updated>
     <id>/</id>
@@ -123,18 +123,6 @@ une grève dans les transports pour l'un, la pluie et les bouchons sur le périp
 <p>La pluie et les grèves parisiennes, certainement orchestré par Oracle #troll, n'aurons pas eu raison du succès de ce rendez vous annuel.</p>
 
 <p>Vivement l'édition 2017.</p>
-]]></content>
-        </entry>
-            <entry>
-            <title type="html"><![CDATA[Ouverture du blog Sismic]]></title>
-            <link href="/blog/2016/04/01/blog-sismic"/>
-            <updated>2016-04-01T20:05:00+02:00</updated>
-            <id>/blog/2016/04/01/blog-sismic</id>
-            <content type="html"><![CDATA[<h1 id="ouverture-du-blog-sismic">Ouverture du blog Sismic</h1>
-
-<p>Bonjour à tous,</p>
-
-<p>Vous trouverez sur ce blog notre retour d'expérience et les sujets qui nous passionnent.</p>
 ]]></content>
         </entry>
     </feed>

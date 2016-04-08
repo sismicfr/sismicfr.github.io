@@ -3,31 +3,32 @@
     <title><![CDATA[Blog de Sismic]]></title>
     <link href="/blog/tags/postgresql.xml" rel="self"/>
     <link href="/"/>
-    <updated>2016-04-07T14:18:06+02:00</updated>
+    <updated>2016-04-08T13:25:52+02:00</updated>
     <id>/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
             <title type="html"><![CDATA[PgDay Paris 2016]]></title>
             <link href="/blog/2016/04/10/pgday-2016"/>
-            <updated>2016-04-10T00:00:00+02:00</updated>
+            <updated>2016-04-10T20:05:00+02:00</updated>
             <id>/blog/2016/04/10/pgday-2016</id>
             <content type="html"><![CDATA[<h1 id="conf%C3%A9rence-pgday-paris-2016">Conférence PgDay Paris 2016</h1>
 
-<h2 id="retour-sur-le-pgdayparis---point-de-vue-d%E2%80%99un-dev">Retour sur le pgDayParis - Point de vue d’un dev</h2>
+<h2 id="retour-sur-le-pgdayparis---point-de-vue-c%C3%B4t%C3%A9-dev">Retour sur le pgDayParis - Point de vue côté dev</h2>
 
-<p>Le 31 mars dernier à Paris s’est déroulé la conférence annuelle <a href="http://www.pgday.paris">pgDay Paris</a>.</p>
+<p>Le 31 mars dernier à Paris s’est déroulée la conférence annuelle <a href="http://www.pgday.paris">pgDay Paris</a>.</p>
 
 <p>Cet évènement organisé par la communauté française et européenne de PostgreSQL, 
-était ouvert aussi bien aux administrateur qu’aux développeurs.</p>
+est ouvert à tous, DBA, Développeur...</p>
 
-<p>Pour cette occasion deux développeurs de SISMIC y ont été envoyés: <a href="https://twitter.com/mcoutant">Mathias COUTANT</a> et <a href="https://twitter.com/ryosaeba_fr">Laurent BOLZER</a>.</p>
+<p>SISMIC était présente à cet événement majeur et nous partagerons notre vision 
+de développeurs : <a href="https://twitter.com/mcoutant">Mathias COUTANT</a> et <a href="https://twitter.com/ryosaeba_fr">Laurent BOLZER</a>.</p>
 
 <h2 id="historique-des-bases-de-donn%C3%A9es%2C-au-regard-des-exigences-actuelles---s%C3%A9bastien-lardiere">Historique des Bases de Données, au regard des exigences actuelles - Sébastien LARDIERE</h2>
 
 <p>Une première conférence très intéressante qui nous met dans le bain avec un petit retour en arrière pour nous expliquer
-l’évolution et les attentes des utilisateurs de base de données.</p>
+l’évolution et les attentes des utilisateurs de bases de données.</p>
 
-<p><strong>Ce que nous retiendrons :</strong> énormément de travaux sont issus d’université.</p>
+<p><strong>Ce que nous retiendrons :</strong> énormément de travaux sont issus d’universités.</p>
 
 <h2 id="postgresql-backup-the-modern-ways---magnus-hagander">PostgreSQL Backup the modern ways - Magnus HAGANDER</h2>
 
@@ -46,7 +47,7 @@ sauvegarde sur l’ensemble de l’instance et a une gestion des erreurs.</p>
 
 <h2 id="survivre-%C3%A0-une-migration-de-donn%C3%A9es-de-mysql-vers-postgres---gr%C3%A9goire-hubert">Survivre à une migration de données de MySQL vers Postgres - Grégoire HUBERT</h2>
 
-<p>Migrer une base de données MySQL vers PostgreSQL n’est pas chose la chose la plus aisée au monde ni la plus amusante.</p>
+<p>Migrer une base de données MySQL vers PostgreSQL n’est pas la chose la plus aisée au monde ni la plus amusante.</p>
 
 <p>Grégoire commence fort et de manière assez trollesque avec "On peut migrer de MySQL à PostgreSQL en 20 min", 
 et nous montre ensuite les différentes étapes d’une migration sans passer par un ETL 
@@ -58,6 +59,12 @@ et nous montre ensuite les différentes étapes d’une migration sans passer pa
 <li>PgLoader pour charger les données sous stéroïdes (gère notamment l’encoding latin1 -> utf8, stream les données via le protocole COPY qui est très rapide ...)</li>
 <li>PgTap pour tester la structure.</li>
 </ul>
+
+<h2 id="pause-d%C3%A9jeuner">Pause déjeuner</h2>
+
+<p>Il nous a été proposé un copieux buffet froid. Le repas était au top.</p>
+
+<p>La pause dej a été l'occasion pour nous d'échanger avec notre ami pommiste, Grégoire HUBERT.</p>
 
 <h2 id="quels-outils-de-supervision-pour-postgresql-%3F---damien-clochard">Quels outils de supervision pour PostgreSQL ? - Damien CLOCHARD</h2>
 
@@ -81,7 +88,7 @@ de l'activié de l'instance et donne des pistes d'optimisation comme la pose d'i
 
 <h2 id="tout-sur-les-index---c%C3%A9dric-villemain">Tout sur les index - Cédric VILLEMAIN</h2>
 
-<p>Cette conférence nous a particulièrement intéressé et donnait des explications sur les différents types d'index et leur utilisation.</p>
+<p>Cette conférence nous a particulièrement intéressé et donné des explications sur les différents types d'index et leur utilisation.</p>
 
 <p>Bien qu'indiquée de niveau "Intermédiaire", il fallait déjà une bonne connaissance des index pour l'aprécier à sa juste valeur.</p>
 
@@ -111,7 +118,9 @@ une grève dans les transports pour l'un, la pluie et les bouchons sur le périp
 
 <h2 id="conclusion">Conclusion</h2>
 
-<p>Les présentations de cette conférence étaient toutes très intéressantes, certaines plus orientées développeur, d'autres DBA, il y en avait pour tous les goûts !</p>
+<p>Les présentations de cette conférence étaient toutes très intéressantes, certaines orientées développeur, d'autres DBA, bref il y en avait pour tous les goûts !</p>
+
+<p>La pluie et les grèves parisiennes, certainement orchestré par Oracle #troll, n'aurons pas eu raison du succès de ce rendez vous annuel.</p>
 
 <p>Vivement l'édition 2017.</p>
 ]]></content>
