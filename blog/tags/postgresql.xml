@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <title><![CDATA[Blog de Sismic]]></title>
+    <title><![CDATA[Sismic Blog]]></title>
     <link href="/blog/tags/postgresql.xml" rel="self"/>
     <link href="/"/>
-    <updated>2016-04-08T13:25:52+02:00</updated>
+    <updated>2016-04-08T13:32:54+02:00</updated>
     <id>/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
