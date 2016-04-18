@@ -25,10 +25,9 @@ C'est pour cette raison que nous avons opté pour [Slack](https://slack.com) pou
 
 Nous développons des applications [Symfony 2] (http://symfony.com) pour nos différents clients, avec [Monolog](https://github.com/Seldaek/monolog) pour la gestion des logs applicatifs. 
 Lorsqu'une erreur arrive sur une de nos applications, elle est enregistrée dans le fichier log du projet. 
-Ce fichier log qui est régulièrement consulté, chaque matin par chaque membre de l'équipe  ... ou pas ! 
 
-Malheureusement, les fichier logs sont généralement consultés par nos équipes seulement après que l'erreur nous ait été signalée, que ce soit par les clients ou bien par un internaute. 
-A moins de mettre en place une notification de l'erreur par mail (ce qui n'est pas non plus la meilleure des solutions), il est difficile d'être réactif et de pouvoir corriger rapidement le problème.
+Malheureusement, les fichiers logs sont généralement consultés par nos équipes seulement après que l'erreur nous ait été signalée, que ce soit par les clients ou bien par un internaute. 
+Une première solution avait été de mettre en place une notification par mail, seulement cette solution à vite trouvé ses limites lors du départ en vacances du premier dévellopeur :).
 
 
 ## Envoyer les notifications d'erreurs de nos applications vers un channel Slack via Monolog
