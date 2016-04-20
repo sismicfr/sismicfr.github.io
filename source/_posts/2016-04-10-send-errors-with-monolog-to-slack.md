@@ -17,17 +17,17 @@ authors:
 
 Chez [Sismic](https://sismicfr.github.io), nous sommes tous en télétravail. 
 Nous avons donc besoin d'un outil de communication nous permettant d'échanger entre nous sur différents sujets, que ce soit sur les projets en cours, l'organisation, 
-les plannings ou tout autre sujet de discussion. Il fallait également que nous ayions accès à l'historique des communications des membres de l'équipe,
+les plannings ou tout autre sujet de discussion. Il faut également que nous ayions accès à l'historique des communications des membres de l'équipe,
  même lorque nous sommes hors ligne (ce qui bien entendu ne devrait jamais arriver :D). 
   
-C'est pour cette raison que nous avons opté pour [Slack](https://slack.com) pour notre communication interne. 
+C'est pour cette raison que nous avons opté pour [Slack](https://slack.com). 
 
 
 Nous développons des applications [Symfony 2] (http://symfony.com) pour nos différents clients, avec [Monolog](https://github.com/Seldaek/monolog) pour la gestion des logs applicatifs. 
 Lorsqu'une erreur arrive sur une de nos applications, elle est enregistrée dans le fichier log du projet. 
 
 Malheureusement, les fichiers logs sont généralement consultés par nos équipes seulement après que l'erreur nous ait été signalée, que ce soit par les clients ou bien par un internaute. 
-Une première solution avait été de mettre en place une notification par mail, seulement cette solution à vite trouvé ses limites lors du départ en vacances du premier dévellopeur :).
+Une première solution a été de mettre en place une notification par mail, seulement cette solution a vite trouvé ses limites lors du départ en vacances du premier développeur :).
 
 
 ## Envoyer les notifications d'erreurs de nos applications vers un channel Slack via Monolog
