@@ -32,7 +32,7 @@ Une première solution a été de mettre en place une notification par mail, seu
 
 ## Envoyer les notifications d'erreurs de nos applications vers un channel Slack via Monolog
  
-Pour gagner en réactivité, il nous faudrait donc pouvoir récupérer en temps réel les notifications d'erreur sur un canal de communication accessible à n'importe quel moment 
+Pour gagner en réactivité, il nous faut donc pouvoir récupérer en temps réel les notifications d'erreur sur un canal de communication accessible à n'importe quel moment 
 par l'équipe de développement. 
 Nous avons justement ce canal de communication à notre disposition: notre outil de communication Slack. Chaque membre de l'équipe de développement s'y connecte en début de journée et 
 est connecté durant toute sa journée de travail (et même plus si affinité! ). Il aurait donc été intéressant de pouvoir utiliser également cet outil pour recevoir les erreurs critiques de nos applications. 
