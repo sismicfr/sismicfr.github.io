@@ -1,4 +1,3 @@
-/.idea/workspace.xml
 /.idea
 /.sculpin/
 /app/cache/*
@@ -8,4 +7,3 @@
 /output_*/
 /source/components/
 s3.conf
-.idea/*
