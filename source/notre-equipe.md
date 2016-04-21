@@ -8,9 +8,9 @@ title: L'équipe Sismic
 Sismic! 
 
 
-[Mikael PARIS](notre-equipe/mikael-paris.html)
+[Mikael PARIS](/mikael-paris)
 
-[Mathias COUTANT](notre-equipe/mathias-coutant.html)
+[Mathias COUTANT](/mathias-coutant)
 
-[Laurent BOLZER](notre-equipe/laurent-bolzer.html)
+[Laurent BOLZER](/laurent-bolzer)
 
