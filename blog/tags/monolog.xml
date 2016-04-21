@@ -3,14 +3,14 @@
     <title><![CDATA[Sismic Blog]]></title>
     <link href="/blog/tags/monolog.xml" rel="self"/>
     <link href="/"/>
-    <updated>2016-04-21T10:26:29+02:00</updated>
+    <updated>2016-04-21T10:28:51+02:00</updated>
     <id>/</id>
         <generator uri="http://sculpin.io/">Sculpin</generator>
             <entry>
             <title type="html"><![CDATA[Notification des erreurs applicatives vers Slack via Monolog]]></title>
-            <link href="/blog/2016/04/10/send-errors-with-monolog-to-slack"/>
-            <updated>2016-04-10T20:05:00+02:00</updated>
-            <id>/blog/2016/04/10/send-errors-with-monolog-to-slack</id>
+            <link href="/blog/2016/04/21/send-errors-with-monolog-to-slack"/>
+            <updated>2016-04-21T10:00:00+02:00</updated>
+            <id>/blog/2016/04/21/send-errors-with-monolog-to-slack</id>
             <content type="html"><![CDATA[<h1 id="notification-des-erreurs-applicatives-vers-slack-via-monolog">Notification des erreurs applicatives vers Slack via Monolog</h1>
 
 <h2 id="le-contexte">Le contexte</h2>

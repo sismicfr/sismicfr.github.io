@@ -1,6 +1,6 @@
 ---
 title: Notification des erreurs applicatives vers Slack via Monolog
-date: 2016-04-10 20:05
+date: 2016-04-21 10:00
 tags:
     - slack
     - monolog
