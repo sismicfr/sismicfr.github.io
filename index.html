@@ -60,6 +60,7 @@
                         <li><a href="/blog">Posts Archive</a></li>
                         <li><a href="/blog/categories">Categories</a></li>
                         <li><a href="/blog/tags">Tags</a></li>
+                        <li><a href="/notre-equipe">Notre équipe</a></li>
                         <li><a href="/about">About</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
@@ -69,7 +70,7 @@
 </header>
 <div class="mainContent container">
     <div class="row-fluid">
-        <div class="span8">
+        <div class="span9">
                 <article>
         <header>
             <h2><a href="/blog/2016/04/10/pgday-2016">PgDay Paris 2016</a></h2>
@@ -195,6 +196,93 @@ une grève dans les transports pour l'un, la pluie et les bouchons sur le périp
             </article>
     <article>
         <header>
+            <h2><a href="/blog/2016/04/10/send-errors-with-monolog-to-slack">Notification des erreurs applicatives vers Slack via Monolog</a></h2>
+        </header>
+        <div>
+            <h1 id="notification-des-erreurs-applicatives-vers-slack-via-monolog">Notification des erreurs applicatives vers Slack via Monolog</h1>
+
+<h2 id="le-contexte">Le contexte</h2>
+
+<p>Chez <a href="https://sismicfr.github.io">Sismic</a>, nous sommes tous en télétravail. 
+Nous avons donc besoin d'un outil de communication nous permettant d'échanger entre nous sur différents sujets, que ce soit sur les projets en cours, l'organisation, 
+les plannings ou tout autre sujet de discussion. Il faut également que nous ayions accès à l'historique des communications des membres de l'équipe,
+ même lorque nous sommes hors ligne (ce qui bien entendu ne devrait jamais arriver :D).</p>
+
+<p>C'est pour cette raison que nous avons opté pour <a href="https://slack.com">Slack</a>.</p>
+
+<p>Nous développons des applications [Symfony 2] (http://symfony.com) pour nos différents clients, avec <a href="https://github.com/Seldaek/monolog">Monolog</a> pour la gestion des logs applicatifs. 
+Lorsqu'une erreur arrive sur une de nos applications, elle est enregistrée dans le fichier log du projet.</p>
+
+<p>Malheureusement, les fichiers logs sont généralement consultés par nos équipes seulement après que l'erreur nous ait été signalée, que ce soit par les clients ou bien par un internaute. 
+Une première solution a été de mettre en place une notification par mail, seulement cette solution a vite trouvé ses limites lors du départ en vacances du premier développeur :).</p>
+
+<h2 id="envoyer-les-notifications-d%27erreurs-de-nos-applications-vers-un-channel-slack-via-monolog">Envoyer les notifications d'erreurs de nos applications vers un channel Slack via Monolog</h2>
+
+<p>Pour gagner en réactivité, il nous faut donc pouvoir récupérer en temps réel les notifications d'erreur sur un canal de communication accessible à n'importe quel moment 
+par l'équipe de développement. 
+Nous avons justement ce canal de communication à notre disposition: notre outil de communication Slack. Chaque membre de l'équipe de développement s'y connecte en début de journée et 
+est connecté durant toute sa journée de travail (et même plus si affinité! ). Il aurait donc été intéressant de pouvoir utiliser également cet outil pour recevoir les erreurs critiques de nos applications.</p>
+
+<p>Ca tombe bien, Monolog dispose d'un <a href="https://github.com/Seldaek/monolog/blob/master/doc/02-handlers-formatters-processors.md#send-alerts-and-emails">handler Slack</a> 
+qui permet d'envoyer les erreurs ayant un certain niveau de criticité minimum vers un channel Slack pré-défini: 
+<a href="https://github.com/Seldaek/monolog/blob/master/src/Monolog/Handler/SlackHandler.php">https://github.com/Seldaek/monolog/blob/master/src/Monolog/Handler/SlackHandler.php</a></p>
+
+<p>Voici les étapes pour le paramétrage de cette fonctionnalité :</p>
+
+<ul>
+<li><p>Créer un nouveau channel Slack 
+Il faut se rendre sur <a href="https://get.slack.help/hc/en-us/articles/201402297-Creating-a-channel">la page de création de channel</a> et créer un nouveau channel privé.</p></li>
+<li><p>Générer un token d'identification pour autoriser notre application Symfony (ou toute autre application utilisant Monolog pour enregistrer ses logs) à envoyer des données à Slack. 
+<a href="https://api.slack.com/web">Authentication</a></p></li>
+<li><p>Paramétrer la communication entre Slack et Monolog dans config_prod.yml (config_dev.yml pour tester en développement).</p></li>
+</ul>
+
+<p><code>parameters.yml</code></p>
+
+<pre><code>parameters:
+    slack_token: slack-token
+    slack_channel: "#nom-du-channel-slack"
+    slack_bot: nom-du-bot-slack
+    slack_emoji: :logo-a-utiliser:
+    slack_level: error # Niveau d'erreur minimum qui enverra une notification au channel Slack
+</code></pre>
+
+<p><code>config_xxx.yml</code></p>
+
+<pre><code>monolog:
+    handlers:
+        slack:
+            type:       slack
+            token:       %slack_token%
+            channel:     %slack_channel%
+            bot_name:    %slack_bot%
+            icon_emoji:  %slack_emoji%
+            level:       %slack_level%
+            include_extra: true
+</code></pre>
+
+<ul>
+<li><p>Et l'appel de l'erreur dans l'application:</p>
+
+<p>$this->get('logger')->error('Error Message', [
+    'parameter1' => 'value1',
+    'parameter2' => 'value2',
+    'parameter3' => 'value3',
+    'parameter4' => 'value4',
+]);</p></li>
+</ul>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Voilà, j'espère que désormais vous pourrez être notifiés rapidement d'une erreur sur votre application si vous utilisez Monolog et Slack.</p>
+
+        </div>
+                    <p class="tags">
+            Tags:
+                        <a href="/blog/tags/slack">slack</a>,                         <a href="/blog/tags/monolog">monolog</a>                        </p>
+            </article>
+    <article>
+        <header>
             <h2><a href="/blog/2016/04/01/blog-sismic">Ouverture du blog Sismic</a></h2>
         </header>
         <div>
@@ -210,7 +298,7 @@ une grève dans les transports pour l'un, la pluie et les bouchons sur le périp
                         <a href="/blog/tags/sismic">sismic</a>                        </p>
             </article>
         </div>
-        <div class="span4 sidebar">
+        <div class="span3 sidebar">
             <div class="well">
                 <h4>Sismic Blog                    <small>Sismic</small>
                                     </h4>
