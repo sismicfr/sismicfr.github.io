@@ -3,7 +3,7 @@ title: Retour d'expérience sur l'utilisation intensive de POMM
 date: 2016-04-10 20:05
 tags:
     - pomm
-    - postgresql
+    - PostgreSQL
     - php
 categories:
     - development
@@ -12,123 +12,121 @@ authors:
     - Mikael PARIS (https://twitter.com/ParisMikael)
 ----------------------------------------------------
 
-# Retour d'expérience sur l'utilisation intensive de POMM
+# L'abandon d'un ORM au profit de POMM, retour d'expérience.
 
 ## Introduction
 
-Je suis développeur PHP et pationné par les bases données je vais faire un retour sur
-  mon expérience sur l'utilisation de POMM en milieu professionnel.
+Chez Sismic, nous utilisons POMM sur tous nos projets je vais vous retracer les étapes qui ont constituées
+notre passage de Propel (ORM) vers Pomm.
    
-Comme beaucoup de développeur PHP j'ai commencé sur MySQL avec de la PDO, un jour on en a marre
-d'écrire du SQL et très vite on se retrouve à utiliser un ORM , mon choix s'était porté à 
-l'époque sur Propel ( je ne rentrerais pas dans le débas Propel / Doctrine car choisir un d'entre eux 
-est déjà un mauvais choix #troll)
+Comme beaucoup de développeurs PHP j'ai débuté avec MySQL et PDO. Les projets passent et un jour on en a marre
+d'écrire du SQL, très vite on se retrouve à utiliser un ORM. Mon choix, à l'époque, s'était porté 
+sur Propel ( je ne rentrerais pas dans le débat Propel vs Doctrine car choisir l'un d'entre eux 
+était déjà un mauvais choix #troll)
 
-A ce moment là une nouvelle vie commence et on se sent léger avec l'impression de se concentrer sur son code métier.
-On se sent puissant car à tout moment on peux switcher de base de données sur notre projet. 
+A ce moment là une nouvelle vie commence, on se sent léger et puissant avec l'impression de se concentrer sur son code métier.
 
-C'est génial, mais qui le fait réellement ? 
+L'ORM possède de nombreux avantages, l'un des principaux est de pouvoir s'interfacer avec plusieurs SGBD. 
 
-La deuxième vrai question, qui fait encore du MySql ? :)     
+Seulement cet avantage est également sa plus grande faiblesse. En effet pour garantir une compatibilité il est obligé d'utiliser des fonctionnalités communes.
 
-## La découverte de POMM Quésako?
+Si cela n'est pas dommageable pour Mysql, avec PostgreSQL cela est bien différent.   
 
-Je dois avouer que la découverte du projet au départ est la résultante d'une micro discussion dans les couloirs du célèbre évènement 
-de l'AFUP (le Forum PHP)
+## La découverte de POMM, QUÉSACO ?
 
-Entre temps j'ai stoppé l'utilisation de MySql et dévellopé essentiellement avec Postgres, Pomm est donc devenu une évidence, puisque je ne travaillais 
-qu'avec un seul SGBD 
+L'essayer, c'est l'adopter. C'est un peu le résumé de mon passage de Mysql vers PostgreSQL. Au fil du temps l'envie d'en découvrir plus sur ce SGBD se fait ressentir.
 
-Lorsque je me suis interressé au projet, celui-ci était en v1. La v2 était en cours de développement mais loin d'être en stable. 
-J'ai tout de même choisi la v2 pariant sur l'avenir et conseillé par @chanmix51.   
- 
-J'ai commencé par lire la doc et très vite je compris que Pomm était divisé en plusieurs briques :
-    - Foundation
-    - ModelManager
-    - Cli
+Une envie très vite rendue impossible, à cause de l'ORM #frustration.
+
+C'est lors d'une discussion dans les couloirs du célèbre évènement de l'AFUP (le Forum PHP) que j'ai découvert le projet Pomm
+
+Lorsque je m'y suis interressé, celui-ci était en v1, la v2 était en cours de développement. 
+J'ai tout de même choisi cette dernière pariant sur l'avenir mais égalemnt conseillé par [Grégoire Hubert - @chanmix51](https://twitter.com/chanmix51), owner de Pomm.
 
 
 ## Premiers pas, premiers Doutes
 
 La promesse de Pomm était forte : Utiliser pleinement la puissance de Postgres. Youuuhouu !
  
-Sans comprendre réellement le but de la division des packages de Pomm je partis d'un projet Silex et insérais la full stack Pomm.  
-
-Paramétrage du DSN fait et une commande avec le CLI plus tard me voilà dans le Vortex Pomm.
+Pomm est divisé en plusieurs briques :  
+    - Foundation
+    - ModelManager
+    - Cli
+ 
+Sans comprendre réellement le but de cette division, je commençais avec un projet Silex et insérais la full stack Pomm.  
    
-L'un des cheval de bataille de POMM est d'être simple et facilement apréhendable, la prise en main a donc été rapide.  
+L'un des chevaux de bataille du projet est de se vouloir simple et facilement appréhendable, la prise en main a donc été très rapide.  
 
-Rapidement je réalise mes premières requêtes avec le ModelManager a base de findByPk et de findWhere.
+Je paramètre le DSN, exécute une commande avec le CLI et me voilà dans le Vortex Pomm.
 
-Puis l'envie me prend soudain de récupérer une liaison grâce a une Foreign Key. Avant j'aurais fait un ->leftJoinFK mais là? 
+Rapidement je réalise mes premières requêtes avec le ModelManager avec les fonctions de CRUD classiques : findByPk, findWhere...
 
-Hein, je dois écrire une requête SQL? Pendant 2 sec petit moment de solitude, puis rapidement ma mémoire me revient Left Join, Inner Join tant de mot clés non utilisé
-depuis bien longtemps.
+Puis l'envie me prend soudain de récupérer une liaison grâce à une Foreign Key. Avec Propel j'aurais fait un ->leftJoinFK mais là? 
 
-Après plusieurs années me voilà a ré-écrire mes requêtes SQL. 
+Quoi? je dois écrire une requête SQL? 
 
-Ok super, mais là je passe plus de temps qu'avant à obtenir un résultat identique...
+Pendant 2 secondes un petit moment de solitude me gagne... Puis, rapidement ma mémoire me revient, Left Join, Inner Join tant de mot clés non utilisés depuis bien longtemps.
 
-## Changer sa facon de pensée
+Après plusieurs années me voilà à réecrire mes requêtes SQL ! 
 
-Bien décidé à découvrir cette puissance promise je lisais en parrallèle des articles sur postgres. 
+C'est génial, mais là je passe plus de temps qu'avant à obtenir un résultat identique que m'apporte Pomm ?
 
-Le premier d'entre eux me parlais des Schémas, sérieux le truc "public" n'était pas là que pour me rajouter une étape dans le parcours de ma base et faire plus Geek? 
+## Changer sa façon de penser
 
-Et bien non! celà a une vrai utilité et certains font le parrallèle avec les namespaces.
+Bien décidé à découvrir cette puissance promise, je lisais en parallèle des articles sur PostgreSQL. 
 
-Ensuite j'entends parlé de JSON, Hstore, Tsrange, Array... Quoi ? Postgres contiendrais d'autre type de données que integer, varchar... 
+Le premier d'entre eux me parlait des Schémas. J'ai découvert que "public" n'était pas là que pour ajouter une étape dans le parcours d'accès à ma base et faire plus Geek que Mysql ^^ ? 
 
-Et oui cela fut sans doute mon plus grand boulversement. Ah mais attend, j'ai déjà stocker de l'Array avec Propel ! 
+Et bien non! celà a une vraie utilité, voici le détail [schémas PostgreSQL](http://docs.postgresqlfr.org/9.4/ddl-schemas.html). 
+
+Ensuite j'entend parler de JSON, Hstore, Tsrange, Array... Quoi? PostgreSQL contiendrait d'autres types de données que integer, varchar... ?
+
+Cela fut sans doute mon plus grand bouleversement. Stop ! j'ai déjà stocké de l'Array avec Propel ! 
  
-En fait les ORM se devant de garder une compatibilité avec tous les SGBD mon array était en fait une string parsée o_O, alors que postgres peut stocker 
-en array et grâce a Pomm plus de parsing rien, j'envois et recois un Array à Postgres.
+En fait les ORM se devant de garder une compatibilité avec tous les SGBD mon array était en fait une chaîne parsée o_O. Cependant PostgreSQL peut stocker 
+de l'array et grâce a Pomm plus de parsing, rien, j'envoie et reçois un Array à Postgres.
 
-L'autre gros changement à été la découverte da la notion de nested entities (cela fera l'objet d'un autre article)
-
-Bref, je commencais à comprendre qu'il fallait arrété de penser ORM ! et celà est l'étape la plus difficile. 
+Bref, je commencais à comprendre qu'il fallait arréter de penser ORM ! et celà est l'étape la plus difficile. 
  
-J'aime comparé celà au passage Procédurale => Objet au départ on à l'impression de perdre du temps puis très vite on redécouvre la force des choses, la maintenabilité...
+Je compare celà au passage Procédurale => Objet au départ on a l'impression de perdre du temps puis très vite on découvre la force des choses, la maintenabilité...
 
-Une de mes erreurs au début à été lors de migration Propel => Pomm d'ommettre la structure de la base de données. Cela n'a finalement aucun intérêt et je 
-ne serais que de conseiller uné ré-organisation au moins partiel de votre base.
+Une de mes erreurs, sur des projets existants au début, a été lors de migration Propel => Pomm d'ommettre la structure de la base de données. 
+Cela n'a finalement aucun intérêt et je ne serais que de conseiller uné ré-organisation au moins partielle de votre base.
 
 ## La montée en puissance, la re-découverte de Postgres
 
-Mon cerveau commencant à se faire à l'idée je décidais d'en apprendre plus sur Pomm, aider et supporter par la petite mais très présente team du projet.
+Mon cerveau commencant à se faire à l'idée je décidais d'en apprendre plus sur Pomm, aider et supporter par la petite mais très présente team du 
+projet sur le channel IRC : irc.freenode.net #pomm.
 
-Dans mes projets je dois souvent mettre en place des tableaux de stats, des graphs etc. Jusqu'à la découverte de POMM cela était une réel corvée.
+Dans mes projets, je dois souvent mettre en place des tableaux de stats, des graphs etc... Jusqu'à la découverte de POMM cela était une réelle corvée.
 
-Je devais écrire des scripts de dizaines de lignes avec l'ORM pour tenter de récupérer des datas sur des dizaines de tables différentes, faires des SUM, des distincts.
-Je ne parlerais même pas du débugage de ce genre de script...  
+Je devais écrire des scripts de plusieurs lignes avec l'ORM pour tenter de récupérer des datas sur des dizaines de tables différentes et faire des SUM, des distincts...
 
-Que dire de la vue ? En effet je me retrouvais avec des objets modélisais qui me servait à rien et mes boucles ressembais à un vrai champs de bataille pour obtenir le résultat.
+Ce genre de script est très peu debuggable et maintenable, que dire de l'exploitation des résultats obtenus ? 
+Des boucles de boucles et des conditions en tout genre pour tenter d'obtenir quelque chose d'exploitable.
 
-Et là c'est la découverte de Foundation ! Pourquoi vouloir modélisé en objet ce genre de datas? 
+Et là c'est la découverte de Foundation ! Pourquoi vouloir modéliser en objet ce genre de données ? 
 
-On affiche des tableaux de stats alors pourquoi ne pas faire une simple projection du résultat que l'on souhaite obtenir. Et bien c'est exactement ce que permet Foundation. 
+Ce que l'on souhaite, c'est afficher des tableaux de stats. Alors pourquoi ne pas faire une simple projection du résultat que l'on veut obtenir? 
+Et bien c'est exactement ce que permet Foundation en bénificiant des avantages de POMM. 
 
-Dans ces tableaux de stats souvent on doit calculer les totaux. Quelle solution ? une autre requête ? calcul lors de la boucle d'affichage?
+Dans ces tableaux de statistiques, souvent on doit calculer les totaux. Quelle solution ? une autre requête ? calcul des totaux lors de la boucle d'affichage?
 
-Pourquoi se faire du mal lorsqu'il existe les [WITH Queries](http://www.postgresql.org/docs/9.4/static/tutorial-window.html) ? 
+Pourquoi se faire du mal lorsqu'il existe les [WITH Queries](http://www.PostgreSQL.org/docs/9.4/static/tutorial-window.html) ? 
 
-Je vous laisse également découvrir un article sur les [window functions] (http://www.pomm-project.org/news/a-short-focus-on-window-functions.html)
+Je vous laisse également découvrir un article sur les [window functions] (http://www.pomm-project.org/news/a-short-focus-on-window-functions.html).
 
-Une grande étape à été de redonner du sens à mon SGBD en lui re donnant la gestion de certaines contraintes métier. Pourquoi donc écrire des lignes de codes lorsqu'une simple contrainte 
-sur Postgres permet de faire la même chose? 
+Une grande étape a été de redonner du sens à mon SGBD en lui intégrant la gestion de certaines contraintes métier grâce notamment à des triggers.  
 
-A l'heure des applications format (appli mobile, appli web...) nous multiplions les API pour centraliser les contraintes Métier mais la base de données ne devrait elle pas se satisfaire à elle même et 
-posséder les contraintes métier afin de garder son intégrité. 
-
-Feriez vous un script pour controller les Foreign Key ?
+Le but étant de permettre à la base de données de pouvoir garder son "intégrité métier" de manière autonome peu importe le client qui interragit avec elle. 
 
 ## Conclusion
 
-Presque 2 ans se sont écoulés et Pomm fait maintenant partis de mon quotidien déployés en Prod sur du silex, Symfony ou from scratch. Pomm convient à tout type de projet grâce à son découpage.
-De grosse appli grâce au Model Manager, des applis ayant besoin d'une interface simple a Postgres grâce au Foundation, mais également des workers grâce au CLI.
+Presque 2 ans se sont écoulées et Pomm fait maintenant partie de notre quotidien. Déployé en Prod sur du silex, Symfony ou from scratch. Pomm convient à tout type de projet grâce à son découpage.
+Des applications complexes grâce au Model Manager, des applications ayant besoin d'une interface simple a PostgreSQL grâce à Foundation, mais également des workers grâce au CLI.
 
 Vous l'aurez compris la plus grande difficulté de POMM est la remise en question obligatoire de nos habitudes et la volonté de vouloir arréter de snober le SQL.   
 
-La plus grande force de Pomm est de se faire oublier et de n'avoir aucune contrainte pour communiquer et exploiter la puissance de Postgres.
+La plus grande force de Pomm est de se faire oublier et de n'avoir aucune contrainte pour communiquer et exploiter la puissance de PostgreSQL.
 
-Aujourd'hui, l'équipe s'est agrandi, la formation a été simple et l'équipe découvre chaque jours des fonctionnalités un peu plus évolués de postgres. 
+Aujourd'hui, l'équipe s'est agrandie, la formation a été simple et l'équipe découvre chaque jour des fonctionnalités un peu plus avancées de postgres. 
