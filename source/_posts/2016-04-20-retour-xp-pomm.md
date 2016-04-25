@@ -1,5 +1,5 @@
 ---
-title: Retour d'expérience sur l'utilisation intensive de POMM
+title: Retour d'expérience sur l'utilisation intensive de Pomm
 date: 2016-04-10 20:05
 tags:
     - pomm
@@ -12,11 +12,11 @@ authors:
     - Mikael PARIS (https://twitter.com/ParisMikael)
 ----------------------------------------------------
 
-# L'abandon d'un ORM au profit de POMM, retour d'expérience.
+# L'abandon d'un ORM au profit de Pomm, retour d'expérience.
 
 ## Introduction
 
-Chez Sismic, nous utilisons POMM sur tous nos projets je vais vous retracer les étapes qui ont constituées
+Chez Sismic, nous utilisons Pomm sur tous nos projets je vais vous retracer les étapes qui ont constituées
 notre passage de Propel (ORM) vers Pomm.
    
 Comme beaucoup de développeurs PHP j'ai débuté avec MySQL et PDO. Les projets passent et un jour on en a marre
@@ -32,7 +32,7 @@ Seulement cet avantage est également sa plus grande faiblesse. En effet pour ga
 
 Si cela n'est pas dommageable pour Mysql, avec PostgreSQL cela est bien différent.   
 
-## La découverte de POMM, QUÉSACO ?
+## La découverte de Pomm, QUÉSACO ?
 
 L'essayer, c'est l'adopter. C'est un peu le résumé de mon passage de Mysql vers PostgreSQL. Au fil du temps l'envie d'en découvrir plus sur ce SGBD se fait ressentir.
 
@@ -86,11 +86,11 @@ Cela fut sans doute mon plus grand bouleversement. Stop ! j'ai déjà stocké de
 En fait les ORM se devant de garder une compatibilité avec tous les SGBD mon array était en fait une chaîne parsée o_O. Cependant PostgreSQL peut stocker 
 de l'array et grâce a Pomm plus de parsing, rien, j'envoie et reçois un Array à Postgres.
 
-Bref, je commencais à comprendre qu'il fallait arréter de penser ORM ! et celà est l'étape la plus difficile. 
+Bref, je commencais à comprendre qu'il fallait arréter de penser ORM ! et celà fût sans doute l'étape la plus difficile. 
  
 Je compare celà au passage Procédurale => Objet au départ on a l'impression de perdre du temps puis très vite on découvre la force des choses, la maintenabilité...
 
-Une de mes erreurs, sur des projets existants au début, a été lors de migration Propel => Pomm d'ommettre la structure de la base de données. 
+Au début, une de mes erreurs, sur des projets existants avec Propel, a été de négliger la structure de la base de données. 
 Cela n'a finalement aucun intérêt et je ne serais que de conseiller uné ré-organisation au moins partielle de votre base.
 
 ## La montée en puissance, la re-découverte de Postgres
@@ -98,7 +98,7 @@ Cela n'a finalement aucun intérêt et je ne serais que de conseiller uné ré-o
 Mon cerveau commencant à se faire à l'idée je décidais d'en apprendre plus sur Pomm, aider et supporter par la petite mais très présente team du 
 projet sur le channel IRC : irc.freenode.net #pomm.
 
-Dans mes projets, je dois souvent mettre en place des tableaux de stats, des graphs etc... Jusqu'à la découverte de POMM cela était une réelle corvée.
+Dans mes projets, je dois souvent mettre en place des tableaux de stats, des graphs etc... Jusqu'à la découverte de Pomm cela était une réelle corvée.
 
 Je devais écrire des scripts de plusieurs lignes avec l'ORM pour tenter de récupérer des datas sur des dizaines de tables différentes et faire des SUM, des distincts...
 
@@ -108,13 +108,10 @@ Des boucles de boucles et des conditions en tout genre pour tenter d'obtenir que
 Et là c'est la découverte de Foundation ! Pourquoi vouloir modéliser en objet ce genre de données ? 
 
 Ce que l'on souhaite, c'est afficher des tableaux de stats. Alors pourquoi ne pas faire une simple projection du résultat que l'on veut obtenir? 
-Et bien c'est exactement ce que permet Foundation en bénificiant des avantages de POMM. 
+Et bien c'est exactement ce que permet Foundation en bénificiant des avantages de Pomm. 
 
 Dans ces tableaux de statistiques, souvent on doit calculer les totaux. Quelle solution ? une autre requête ? calcul des totaux lors de la boucle d'affichage?
-
-Pourquoi se faire du mal lorsqu'il existe les [WITH Queries](http://www.PostgreSQL.org/docs/9.4/static/tutorial-window.html) ? 
-
-Je vous laisse également découvrir un article sur les [window functions] (http://www.pomm-project.org/news/a-short-focus-on-window-functions.html).
+Pourquoi faire compliqué quand on peut faire simple : [WITH Queries](http://www.PostgreSQL.org/docs/9.4/static/tutorial-window.html) ? 
 
 Une grande étape a été de redonner du sens à mon SGBD en lui intégrant la gestion de certaines contraintes métier grâce notamment à des triggers.  
 
@@ -125,7 +122,7 @@ Le but étant de permettre à la base de données de pouvoir garder son "intégr
 Presque 2 ans se sont écoulées et Pomm fait maintenant partie de notre quotidien. Déployé en Prod sur du silex, Symfony ou from scratch. Pomm convient à tout type de projet grâce à son découpage.
 Des applications complexes grâce au Model Manager, des applications ayant besoin d'une interface simple a PostgreSQL grâce à Foundation, mais également des workers grâce au CLI.
 
-Vous l'aurez compris la plus grande difficulté de POMM est la remise en question obligatoire de nos habitudes et la volonté de vouloir arréter de snober le SQL.   
+Vous l'aurez compris la plus grande difficulté de Pomm est la remise en question obligatoire de nos habitudes et la volonté de vouloir arréter de snober le SQL.   
 
 La plus grande force de Pomm est de se faire oublier et de n'avoir aucune contrainte pour communiquer et exploiter la puissance de PostgreSQL.
 
