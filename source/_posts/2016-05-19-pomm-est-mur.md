@@ -10,7 +10,7 @@ categories:
     
 authors: 
     - Mikael PARIS (https://twitter.com/ParisMikael)
-----------------------------------------------------
+---
 
 # L'abandon d'un ORM au profit de Pomm, retour d'expérience.
 

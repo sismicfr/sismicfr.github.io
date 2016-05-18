@@ -7,6 +7,12 @@
     <priority>0.8</priority>
   </url>
     <url>
+    <loc>/blog/2016/05/19/pomm-est-mur</loc>
+    <lastmod>2016-05-19T08:00:00+02:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+    <url>
     <loc>/blog/2016/04/21/send-errors-with-monolog-to-slack</loc>
     <lastmod>2016-04-21T10:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -21,12 +27,6 @@
     <url>
     <loc>/blog/2016/04/01/blog-sismic</loc>
     <lastmod>2016-04-01T20:05:00+02:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-    <url>
-    <loc>/blog/2016/05/19/pomm-est-mur</loc>
-    <lastmod>2016-05-19T00:00:00+02:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
