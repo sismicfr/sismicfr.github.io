@@ -20,9 +20,7 @@ Chez Sismic, nous utilisons Pomm sur tous nos projets. Je vais vous retracer les
 notre passage de Propel (ORM) vers Pomm.
    
 Comme beaucoup de développeurs PHP, j'ai débuté avec MySQL et PDO. Les projets se succèdent, un jour on est lassé
-d'écrire du SQL et très vite on se retrouve à utiliser un ORM. Mon choix, à l'époque, s'est porté 
-sur Propel ( je ne rentrerais pas dans le débat Propel vs Doctrine car choisir l'un d'entre eux 
-était déjà un mauvais choix #troll)
+d'écrire du SQL et très vite on se retrouve à utiliser un ORM.
 
 A ce moment là une nouvelle vie commence, on se sent léger et puissant avec l'impression de pouvoir se concentrer sur son code métier.
 
@@ -117,7 +115,13 @@ Le but étant de permettre à la base de données de pouvoir garder son "intégr
 
 ## Conclusion
 
-Presque 2 ans se sont écoulés et Pomm fait maintenant partie de notre quotidien. Déployé en production sur des proets Silex, Symfony ou from scratch. Pomm convient à tout type de projet grâce à son découpage:
+Presque 2 ans se sont écoulés et Pomm fait maintenant partie de notre quotidien. Déployé en production sur des projets Silex, Symfony2 & Symfony3 ou from scratch. 
+
+Chez Sismic, Pomm nous a permis de gagner en efficacité. Notre code est beaucoup plus maintenable et évolutif.
+
+Cela à également permis de réduire considérablement le temps de formation lors de nouveau recrutement et de réduire la prise en main des projets.
+
+Pomm convient à tout type de projet grâce à son découpage:
 Des applications complexes grâce au Model Manager, des applications ayant besoin d'une interface simple a PostgreSQL grâce à Foundation, mais également des workers grâce au CLI.
 
 Vous l'aurez compris, la plus grande difficulté de Pomm est la remise en question obligatoire de nos habitudes et la volonté de vouloir arréter de snober le SQL.   
