@@ -115,7 +115,7 @@ Le but étant de permettre à la base de données de pouvoir garder son "intégr
 
 ## Conclusion
 
-Presque 2 ans se sont écoulés et Pomm fait maintenant partie de notre quotidien. Déployé en production sur des projets Silex, Symfony2 & Symfony3 ou from scratch. 
+Presque 2 ans se sont écoulés et Pomm fait maintenant partie de notre quotidien et est déployé en production sur des projets Silex, Symfony2 & Symfony3 ou from scratch. 
 
 Chez Sismic, Pomm nous a permis de gagner en efficacité. Notre code est beaucoup plus maintenable et évolutif.
 
