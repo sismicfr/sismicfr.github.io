@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Home &mdash; Sismic Blog &mdash; Sismic</title>
+    <meta charset="utf-8">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="robots" content="noindex, follow">
+        <link href="/components/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/components/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <link rel="apple-touch-startup-image" href="/images/jackson/2048x2048.png">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="shortcut icon" sizes="76x76" href="/images/jackson/76x76.png">
+    <link rel="shortcut icon" sizes="120x120" href="/images/jackson/120x120.png">
+    <link rel="shortcut icon" sizes="128x128" href="/images/jackson/128x128.png">
+    <link rel="shortcut icon" sizes="152x152" href="/images/jackson/152x152.png">
+    <link rel="shortcut icon" sizes="196x196" href="/images/jackson/196x196.png">
+    <link rel="shortcut icon" sizes="512x512" href="/images/jackson/512x512.png">
+    <link rel="shortcut icon" sizes="1024x1024" href="/images/jackson/1024x1024.png">
+    <link rel="shortcut icon" sizes="2048x2048" href="/images/jackson/2048x2048.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/images/jackson/76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/images/jackson/120x120.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="/images/jackson/128x128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/images/jackson/152x152.png">
+    <link rel="apple-touch-icon" sizes="196x196" href="/images/jackson/196x196.png">
+    <link rel="apple-touch-icon" sizes="512x512" href="/images/jackson/512x512.png">
+    <link rel="apple-touch-icon" sizes="1024x1024" href="/images/jackson/1024x1024.png">
+    <link rel="apple-touch-icon" sizes="2048x2048" href="/images/jackson/2048x2048.png">
+
+    <link rel="stylesheet" href="/components/highlightjs/styles/github.css"/>
+    <link rel="alternate" type="application/atom+xml" href="/atom.xml"
+          title="Sismic Blog activity feed"/>
+    <style>
+        /** quick fix because bootstrap <pre> has a background-color. */
+        pre code {
+            background-color: inherit;
+        }
+    </style>
+                </head>
+<body>
+<header>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container-fluid">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <a class="brand" href="/">Sismic Blog</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav">
+                        <li><a href="/blog">Posts Archive</a></li>
+                        <li><a href="/blog/categories">Categories</a></li>
+                        <li><a href="/blog/tags">Tags</a></li>
+                        <li><a href="/notre-equipe">Notre équipe</a></li>
+                        <li><a href="/about">About</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </div>
+        </div>
+    </div>
+</header>
+<div class="mainContent container">
+    <div class="row-fluid">
+        <div class="span9">
+                <article>
+        <header>
+            <h2><a href="/blog/2016/05/19/pomm-est-mur"></a></h2>
+        </header>
+        <div>
+            <hr />
+
+<p>title: Retour d'expérience: Pomm est mûr, abandonnons les ORM
+date: 2016-05-19 08:00
+tags:
+    - pomm
+    - PostgreSQL
+    - php
+categories:
+    - development</p>
+
+<p>authors:</p>
+
+<h2 id="------mikael-paris-https%3A%2F%2Ftwitter.com%2Fparismikael">    - Mikael PARIS (https://twitter.com/ParisMikael)</h2>
+
+<h1 id="l%27abandon-d%27un-orm-au-profit-de-pomm%2C-retour-d%27exp%C3%A9rience.">L'abandon d'un ORM au profit de Pomm, retour d'expérience.</h1>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>Chez Sismic, nous utilisons Pomm sur tous nos projets. Je vais vous retracer les étapes qui ont constituées
+notre passage de Propel (ORM) vers Pomm.</p>
+
+<p>Comme beaucoup de développeurs PHP, j'ai débuté avec MySQL et PDO. Les projets se succèdent, un jour on est lassé
+d'écrire du SQL et très vite on se retrouve à utiliser un ORM.</p>
+
+<p>A ce moment là une nouvelle vie commence, on se sent léger et puissant avec l'impression de pouvoir se concentrer sur son code métier.</p>
+
+<p>L'ORM possède de nombreux avantages, l'un des principaux étant de pouvoir s'interfacer avec plusieurs SGBD.</p>
+
+<p>Seulement, cet avantage est également sa plus grande faiblesse. En effet pour garantir une parfaite compatibilité, il est obligé d'utiliser des fonctionnalités communes, et donc de faire l'impasse sur certaines spécificités propres à tel ou tel moteur de base de données qui n'éxistent pas partout.</p>
+
+<p>Si cela n'est pas dommageable pour Mysql, c'est bien différent avec PostgreSQL.</p>
+
+<h2 id="la-d%C3%A9couverte-de-pomm%2C-qu%C3%89saco-%3F">La découverte de Pomm, QUÉSACO ?</h2>
+
+<p>L'essayer, c'est l'adopter. C'est un peu le résumé de mon passage de Mysql vers PostgreSQL. Au fil du temps, l'envie d'en découvrir plus sur ce SGBD se fait ressentir.</p>
+
+<p>Une envie très vite rendue impossible, à cause des limitations de l'ORM #frustration.</p>
+
+<p>C'est lors d'une discussion dans les couloirs du célèbre évènement de l'<a href="http://www.afup.org">AFUP</a> (le Forum PHP) que j'ai découvert le projet Pomm</p>
+
+<p>Lorsque je m'y suis interressé, celui-ci était encore en v1, la v2 étant alors en cours de développement. 
+J'ai tout de même choisi cette dernière, pariant sur l'avenir mais également conseillé par <a href="https://twitter.com/chanmix51">Grégoire Hubert - @chanmix51</a>, owner de Pomm.</p>
+
+<h2 id="premiers-pas%2C-premiers-doutes">Premiers pas, premiers Doutes</h2>
+
+<p>La promesse de Pomm était forte : Utiliser pleinement la puissance de Postgres. Youuuhouu !</p>
+
+<p>Pomm est divisé en plusieurs briques :<br />
+    - Foundation
+    - ModelManager
+    - Cli</p>
+
+<p>Sans comprendre réellement le but de cette division, je commençais avec un projet Silex et insérais la full stack Pomm.</p>
+
+<p>L'un des chevaux de bataille du projet étant de se vouloir simple et facilement appréhendable, la prise en main a été très rapide.</p>
+
+<p>Je paramètre le DSN, exécute une commande avec le CLI et me voilà dans le Vortex Pomm.</p>
+
+<p>Rapidement, je réalise mes premières requêtes avec le ModelManager pour effectuer les fonctions de CRUD classiques : findByPk, findWhere...</p>
+
+<p>Puis l'envie me prend soudain de récupérer une liaison grâce à une Foreign Key. Avec Propel j'aurais fait un ->leftJoinFK mais là?</p>
+
+<p>Quoi? je dois écrire une requête SQL?</p>
+
+<p>Pendant 2 secondes, un petit moment de solitude me gagne... Puis, rapidement, la mémoire me revient: Left Join, Inner Join, tant de mots clés non utilisés depuis bien longtemps!</p>
+
+<p>Après plusieurs années, me voilà à réecrire mes requêtes SQL !</p>
+
+<p>C'est génial, mais là je passe plus de temps qu'avant à obtenir un résultat identique ... Dans ce cas, quel avantage Pomm m'apporte t'il ?</p>
+
+<h2 id="changer-sa-fa%C3%A7on-de-penser">Changer sa façon de penser</h2>
+
+<p>Bien décidé à utiliser pleinement cette puissance promise, je lisais en parallèle des articles sur PostgreSQL.</p>
+
+<p>Le premier d'entre eux me parlait des Schémas. J'ai découvert que "public" n'était pas là que pour ajouter une étape dans le parcours d'accès à ma base et faire plus Geek que Mysql ^^ ?</p>
+
+<p>Et bien non! celà a une vraie utilité, dont voici le détail <a href="http://docs.postgresqlfr.org/9.4/ddl-schemas.html">schémas PostgreSQL</a>.</p>
+
+<p>Ensuite j'entend parler de JSON, Hstore, Tsrange, Array... PostgreSQL contiendrait donc d'autres types de données que integer, varchar... ?</p>
+
+<p>Cela fut sans doute mon plus grand bouleversement. Stop ! j'ai déjà stocké de l'Array avec Propel !</p>
+
+<p>En fait les ORM se devant de garder une compatibilité avec tous les SGBD, mon array était en fait stocké sous la forme d'une chaîne parsée o_O. PostgreSQL, lui, peut stocker réellement un array et grâce a Pomm plus besoin de parsing. J'envoie et reçois un Array à Postgres.</p>
+
+<p>Je commencais à comprendre qu'il fallait arréter de penser ORM ! et celà fût sans doute l'étape la plus difficile.</p>
+
+<p>Je compare celà au passage Procédural => Objet. Au départ, on a l'impression de perdre du temps puis très vite on découvre la force des choses, la maintenabilité...</p>
+
+<p>Lors de mes tests pour intégrer Pomm à mes projets existants avec Propel, une de mes premières erreurs fut de négliger la structure de la base de données. Conserver une struture de base de données dictée par l'utilisation d'un ORM (Propel, Doctrine ou autre) couplée avec Pomm ne présente finalement aucun intéret et je ne saurais que trop vous conseiller uné ré-organisation au moins partielle de votre base.</p>
+
+<h2 id="la-mont%C3%A9e-en-puissance%2C-la-re-d%C3%A9couverte-de-postgres">La montée en puissance, la re-découverte de Postgres</h2>
+
+<p>Mon cerveau commencant à se faire à l'idée, je décidais d'en apprendre plus sur Pomm, aider et supporter par la petite mais très présente team du 
+projet sur le channel IRC : irc.freenode.net #pomm.</p>
+
+<p>Dans mes projets, je dois souvent mettre en place des tableaux de statistiqures, des graphiques etc... Jusqu'à la découverte de Pomm, cela était une réelle corvée.</p>
+
+<p>Je devais écrire des scripts de plusieurs lignes avec l'ORM pour tenter de récupérer des datas sur des dizaines de tables différentes et faire des SUM, des distincts...</p>
+
+<p>Ce genre de script est très peu debuggable et maintenable, et que dire de l'exploitation des résultats obtenus ? 
+Des boucles imbriquées et des conditions en tout genre pour tenter d'obtenir quelque chose d'exploitable.</p>
+
+<p>C'est là qu'intervient Foundation ! Pourquoi vouloir modéliser en objet ce genre de données ?</p>
+
+<p>Ce que l'on souhaite, c'est afficher des tableaux de stats. Alors pourquoi ne pas faire une simple projection du résultat que l'on veut obtenir? 
+C'est exactement ce que permet Foundation en bénéficiant des avantages de Pomm.</p>
+
+<p>Dans ces tableaux de statistiques, on doit souvent calculer les totaux. Quelle solution ? une autre requête ? calcul des totaux lors de la boucle d'affichage?
+Pourquoi faire compliqué lorsque c'est déjà disponible en natif avec les <a href="http://www.PostgreSQL.org/docs/9.4/static/tutorial-window.html">WITH Queries</a> ?</p>
+
+<p>Une grande étape a été de redonner du sens à mon SGBD en lui intégrant la gestion de certaines contraintes métier, notamment grâce à des triggers.</p>
+
+<p>Le but étant de permettre à la base de données de pouvoir garder son "intégrité métier" de manière autonome, peu importe le client qui interragit avec elle.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>Presque 2 ans se sont écoulés et Pomm fait maintenant partie de notre quotidien et est déployé en production sur des projets Silex, Symfony2 &amp; Symfony3 ou from scratch.</p>
+
+<p>Chez Sismic, Pomm nous a permis de gagner en efficacité. Notre code est beaucoup plus maintenable et évolutif.</p>
+
+<p>Cela à également permis de réduire considérablement le temps de formation lors de nouveau recrutement et de réduire la prise en main des projets.</p>
+
+<p>Pomm convient à tout type de projet grâce à son découpage:
+Des applications complexes grâce au Model Manager, des applications ayant besoin d'une interface simple a PostgreSQL grâce à Foundation, mais également des workers grâce au CLI.</p>
+
+<p>Vous l'aurez compris, la plus grande difficulté de Pomm est la remise en question obligatoire de nos habitudes et la volonté de vouloir arréter de snober le SQL.</p>
+
+<p>La plus grande force de Pomm est de se faire oublier et de n'avoir aucune contrainte pour communiquer et exploiter la puissance de PostgreSQL.</p>
+
+<p>Aujourd'hui, l'équipe s'est agrandie, la formation a été simple et l'équipe découvre chaque jour des fonctionnalités un peu plus avancées de Postgres.</p>
+
+        </div>
+            </article>
+    <nav>
+        <a href="/">Newer Posts</a><br />
+        <br />
+    </nav>
+        </div>
+        <div class="span3 sidebar">
+            <div class="well">
+                <h4>Sismic Blog                    <small>Sismic</small>
+                                    </h4>
+            </div>
+            <div class="well sidebar-nav">
+                <h4>Links</h4>
+                <ul class="nav">
+                    <li><a href="http://www.sismic-info.fr/" target="_blank">http://www.sismic-info.fr/</a></li>
+                    <li><a href="https://twitter.com/sismic" target="_blank">@sismic</a></li>
+                </ul>
+
+                <h4>L'équipe</h4>
+                <ul class="nav">
+                    <li><a href="https://twitter.com/ParisMikael" target="_blank">@ParisMikael</a></li>
+                    <li><a href="https://twitter.com/mcoutant" target="_blank">@mcoutant</a></li>
+                    <li><a href="https://twitter.com/ryosaeba_fr" target="_blank">@ryosaeba_fr</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="container">
+    &copy; 2016 Sismic Blog
+</footer>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="/components/jquery/jquery.min.js"><\/script>')</script>
+<script src="/components/bootstrap/js/bootstrap.min.js"></script>
+
+
+<script type="text/javascript">
+    (function (i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-76138835-1', 'auto');
+    ga('send', 'pageview');
+</script>
+<script src="/components/highlightjs/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+</body>
+</html>
