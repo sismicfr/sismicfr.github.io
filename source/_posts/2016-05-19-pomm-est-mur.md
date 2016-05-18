@@ -1,6 +1,6 @@
 ---
-title: Retour d'expérience sur l'utilisation intensive de Pomm
-date: 2016-05-18 20:05
+title: Retour d'expérience: Pomm est mûr, abandonnons les ORM
+date: 2016-05-19 08:00
 tags:
     - pomm
     - PostgreSQL
